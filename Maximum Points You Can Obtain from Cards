@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maxScore(vector<int>& cardPoints, int k) {
+       //Using Window sliding method
+        int s=0;
+        int e=k;
+        int n=cardPoints.size();
+        int e_sum=0;
+        int s_sum=0,c=0;
+        int ans=0;
+        for(int i=n-1;c<k;i--,c++)
+        e_sum+=cardPoints[i];
+            while(e!=-1)
+            {
+                ans=max(ans,e_sum+s_sum);
+                s_sum+=cardPoints[s];
+                if(n-e < n)
+                e_sum-=cardPoints[n-e];
+                s++;
+                e--;
+            }
+        
+        return ans;
+    }
+};
